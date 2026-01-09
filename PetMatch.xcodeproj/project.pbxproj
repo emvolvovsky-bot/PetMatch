@@ -3,8 +3,39 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 60;
 	objects = {
+
+/* Begin PBXBuildFile section */
+		88B000000000000000000001 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000001 /* ActionButton.swift */; };
+		88B000000000000000000006 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000006 /* ContentView.swift */; };
+		88B000000000000000000008 /* PetRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000008 /* PetRepository.swift */; };
+		88B000000000000000000009 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000009 /* DiscoverView.swift */; };
+		88B00000000000000000000A /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00000000000000000000A /* Haptics.swift */; };
+		88B00000000000000000000B /* LikedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00000000000000000000B /* LikedView.swift */; };
+		88B00000000000000000000C /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00000000000000000000C /* Models.swift */; };
+		88B00000000000000000000D /* PetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00000000000000000000D /* PetCardView.swift */; };
+		88B00000000000000000000E /* PetDeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00000000000000000000E /* PetDeckViewModel.swift */; };
+		88B00000000000000000000F /* PetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00000000000000000000F /* PetDetailView.swift */; };
+		88B000000000000000000010 /* PetMatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000010 /* PetMatchApp.swift */; };
+		88B000000000000000000011 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000011 /* Theme.swift */; };
+		88B000000000000000000013 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000013 /* SafariView.swift */; };
+		88B000000000000000000014 /* PetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000014 /* PetDetailViewModel.swift */; };
+		88B000000000000000000015 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000015 /* Assets.xcassets */; };
+		88B000000000000000000016 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000016 /* Preview Assets.xcassets */; };
+		88B000000000000000000017 /* PetSearchForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000017 /* PetSearchForm.swift */; };
+		88B000000000000000000018 /* PetfinderConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000018 /* PetfinderConfig.swift */; };
+		88B000000000000000000019 /* PetfinderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000019 /* PetfinderError.swift */; };
+		88B00000000000000000001A /* PetfinderDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00000000000000000001A /* PetfinderDTOs.swift */; };
+		88B00000000000000000001B /* PetfinderClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00000000000000000001B /* PetfinderClient.swift */; };
+		88B00000000000000000001C /* PetfinderPetRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00000000000000000001C /* PetfinderPetRepository.swift */; };
+		88B00000000000000000001D /* SamplePetRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00000000000000000001D /* SamplePetRepository.swift */; };
+		88B00000000000000000001E /* DistributorPetRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00000000000000000001E /* DistributorPetRepository.swift */; };
+		88B00000000000000000001F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A00000000000000000001F /* OnboardingView.swift */; };
+		88B000000000000000000020 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000020 /* LocationManager.swift */; };
+		88B000000000000000000021 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000021 /* MapView.swift */; };
+		88B000000000000000000022 /* MapLocationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000022 /* MapLocationPickerView.swift */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		77AAC0EA2F0C311600DBC379 /* PBXContainerItemProxy */ = {
@@ -27,25 +58,83 @@
 		77AAC0D92F0C311400DBC379 /* PetMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AAC0E92F0C311600DBC379 /* PetMatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetMatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AAC0F32F0C311600DBC379 /* PetMatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetMatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88A000000000000000000001 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		88A000000000000000000006 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		88A000000000000000000008 /* PetRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/PetRepository.swift; sourceTree = "<group>"; };
+		88A000000000000000000009 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
+		88A00000000000000000000A /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
+		88A00000000000000000000B /* LikedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedView.swift; sourceTree = "<group>"; };
+		88A00000000000000000000C /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		88A00000000000000000000D /* PetCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCardView.swift; sourceTree = "<group>"; };
+		88A00000000000000000000E /* PetDeckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDeckViewModel.swift; sourceTree = "<group>"; };
+		88A00000000000000000000F /* PetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailView.swift; sourceTree = "<group>"; };
+		88A000000000000000000010 /* PetMatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetMatchApp.swift; sourceTree = "<group>"; };
+		88A000000000000000000011 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		88A000000000000000000013 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI/SafariView.swift; sourceTree = "<group>"; };
+		88A000000000000000000014 /* PetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/PetDetailViewModel.swift; sourceTree = "<group>"; };
+		88A000000000000000000015 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		88A000000000000000000016 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Content/Preview Assets.xcassets"; sourceTree = "<group>"; };
+		88A000000000000000000017 /* PetSearchForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/PetSearchForm.swift; sourceTree = "<group>"; };
+		88A000000000000000000018 /* PetfinderConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petfinder/PetfinderConfig.swift; sourceTree = "<group>"; };
+		88A000000000000000000019 /* PetfinderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petfinder/PetfinderError.swift; sourceTree = "<group>"; };
+		88A00000000000000000001A /* PetfinderDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petfinder/PetfinderDTOs.swift; sourceTree = "<group>"; };
+		88A00000000000000000001B /* PetfinderClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petfinder/PetfinderClient.swift; sourceTree = "<group>"; };
+		88A00000000000000000001C /* PetfinderPetRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/PetfinderPetRepository.swift; sourceTree = "<group>"; };
+		88A00000000000000000001D /* SamplePetRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/SamplePetRepository.swift; sourceTree = "<group>"; };
+		88A00000000000000000001E /* DistributorPetRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/DistributorPetRepository.swift; sourceTree = "<group>"; };
+		88A00000000000000000001F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		88A000000000000000000020 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		88A000000000000000000021 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		88A000000000000000000022 /* MapLocationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
+/* Begin PBXGroup section */
 		77AAC0DB2F0C311400DBC379 /* PetMatch */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
+			isa = PBXGroup;
+			children = (
+				88A000000000000000000010 /* PetMatchApp.swift */,
+				88A00000000000000000001F /* OnboardingView.swift */,
+				88A000000000000000000006 /* ContentView.swift */,
+				88A000000000000000000009 /* DiscoverView.swift */,
+				88A00000000000000000000B /* LikedView.swift */,
+				88A00000000000000000000F /* PetDetailView.swift */,
+				88A00000000000000000000D /* PetCardView.swift */,
+				88A00000000000000000000E /* PetDeckViewModel.swift */,
+				88A00000000000000000000C /* Models.swift */,
+				88A00000000000000000000A /* Haptics.swift */,
+				88A000000000000000000001 /* ActionButton.swift */,
+				88A000000000000000000011 /* Theme.swift */,
+				88A000000000000000000015 /* Assets.xcassets */,
+				88A000000000000000000016 /* Preview Assets.xcassets */,
+				88A000000000000000000008 /* PetRepository.swift */,
+				88A000000000000000000017 /* PetSearchForm.swift */,
+				88A00000000000000000001C /* PetfinderPetRepository.swift */,
+				88A00000000000000000001D /* SamplePetRepository.swift */,
+				88A00000000000000000001E /* DistributorPetRepository.swift */,
+				88A000000000000000000018 /* PetfinderConfig.swift */,
+				88A000000000000000000019 /* PetfinderError.swift */,
+				88A00000000000000000001A /* PetfinderDTOs.swift */,
+				88A00000000000000000001B /* PetfinderClient.swift */,
+				88A000000000000000000014 /* PetDetailViewModel.swift */,
+				88A000000000000000000013 /* SafariView.swift */,
+				88A000000000000000000020 /* LocationManager.swift */,
+				88A000000000000000000021 /* MapView.swift */,
+				88A000000000000000000022 /* MapLocationPickerView.swift */,
+			);
 			path = PetMatch;
 			sourceTree = "<group>";
 		};
 		77AAC0EC2F0C311600DBC379 /* PetMatchTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
+			isa = PBXGroup;
 			path = PetMatchTests;
 			sourceTree = "<group>";
 		};
 		77AAC0F62F0C311600DBC379 /* PetMatchUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
+			isa = PBXGroup;
 			path = PetMatchUITests;
 			sourceTree = "<group>";
 		};
-/* End PBXFileSystemSynchronizedRootGroup section */
+/* End PBXGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		77AAC0D62F0C311400DBC379 /* Frameworks */ = {
@@ -107,9 +196,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				77AAC0DB2F0C311400DBC379 /* PetMatch */,
-			);
 			name = PetMatch;
 			packageProductDependencies = (
 			);
@@ -130,9 +216,6 @@
 			dependencies = (
 				77AAC0EB2F0C311600DBC379 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				77AAC0EC2F0C311600DBC379 /* PetMatchTests */,
-			);
 			name = PetMatchTests;
 			packageProductDependencies = (
 			);
@@ -152,9 +235,6 @@
 			);
 			dependencies = (
 				77AAC0F52F0C311600DBC379 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				77AAC0F62F0C311600DBC379 /* PetMatchUITests */,
 			);
 			name = PetMatchUITests;
 			packageProductDependencies = (
@@ -195,7 +275,7 @@
 			);
 			mainGroup = 77AAC0D02F0C311400DBC379;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 60;
 			productRefGroup = 77AAC0DA2F0C311400DBC379 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -212,6 +292,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88B000000000000000000015 /* Assets.xcassets in Resources */,
+				88B000000000000000000016 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +318,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88B000000000000000000010 /* PetMatchApp.swift in Sources */,
+				88B000000000000000000006 /* ContentView.swift in Sources */,
+				88B000000000000000000009 /* DiscoverView.swift in Sources */,
+				88B00000000000000000000B /* LikedView.swift in Sources */,
+				88B00000000000000000000F /* PetDetailView.swift in Sources */,
+				88B00000000000000000000D /* PetCardView.swift in Sources */,
+				88B00000000000000000000E /* PetDeckViewModel.swift in Sources */,
+				88B00000000000000000000C /* Models.swift in Sources */,
+				88B00000000000000000000A /* Haptics.swift in Sources */,
+				88B000000000000000000001 /* ActionButton.swift in Sources */,
+				88B000000000000000000011 /* Theme.swift in Sources */,
+				88B000000000000000000008 /* PetRepository.swift in Sources */,
+				88B000000000000000000014 /* PetDetailViewModel.swift in Sources */,
+				88B000000000000000000013 /* SafariView.swift in Sources */,
+				88B000000000000000000017 /* PetSearchForm.swift in Sources */,
+				88B00000000000000000001C /* PetfinderPetRepository.swift in Sources */,
+				88B00000000000000000001E /* DistributorPetRepository.swift in Sources */,
+				88B000000000000000000018 /* PetfinderConfig.swift in Sources */,
+				88B000000000000000000019 /* PetfinderError.swift in Sources */,
+				88B00000000000000000001A /* PetfinderDTOs.swift in Sources */,
+				88B00000000000000000001B /* PetfinderClient.swift in Sources */,
+				88B00000000000000000001D /* SamplePetRepository.swift in Sources */,
+				88B00000000000000000001F /* OnboardingView.swift in Sources */,
+				88B000000000000000000020 /* LocationManager.swift in Sources */,
+				88B000000000000000000021 /* MapView.swift in Sources */,
+				88B000000000000000000022 /* MapLocationPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +429,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -378,7 +486,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
