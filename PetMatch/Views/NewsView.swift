@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewsView: View {
-    @StateObject private var newsService = NewsService()
+    private let newsService = NewsService()
     @State private var articles: [NewsArticle] = []
     @State private var isLoading = false
     @State private var errorMessage: String?

@@ -19,10 +19,10 @@ actor NewsService {
         } else if let url = Self.getBaseURLFromConfiguration() {
             self.baseURL = url
         } else {
-            // Default: localhost for development
-            // TODO: Replace with your Render URL after deployment
-            // Example: "https://petmatch-api.onrender.com"
-            self.baseURL = "http://localhost:3000"
+            // Default: Render production URL
+            // To use localhost for development, set PETMATCH_API_URL environment variable
+            // or add it to Info.plist
+            self.baseURL = "https://petmatch-hcrh.onrender.com"
         }
         self.session = session
         let decoder = JSONDecoder()
