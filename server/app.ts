@@ -17,9 +17,23 @@ app.use(express.json());
 // Get NEWS_API_KEY from environment
 const NEWS_API_KEY = process.env.NEWS_API_KEY;
 
-// Initialize services
-const ingestionService = new PetIngestionService();
-const syncService = new PetSyncService();
+// Lazy-load services only when needed (pet endpoints require PETFINDER_DISTRIBUTOR_API_KEY)
+let ingestionService: PetIngestionService | null = null;
+let syncService: PetSyncService | null = null;
+
+function getIngestionService(): PetIngestionService {
+  if (!ingestionService) {
+    ingestionService = new PetIngestionService();
+  }
+  return ingestionService;
+}
+
+function getSyncService(): PetSyncService {
+  if (!syncService) {
+    syncService = new PetSyncService();
+  }
+  return syncService;
+}
 
 // NewsAPI response types
 interface NewsAPIArticle {
@@ -146,7 +160,7 @@ app.get('/health', (req, res) => {
 // Pet ingestion endpoint (can be triggered by cron jobs)
 app.post('/api/pets/ingest', async (req, res) => {
   try {
-    const result = await ingestionService.ingestPets();
+    const result = await getIngestionService().ingestPets();
     res.json({
       success: true,
       ...result
@@ -163,7 +177,7 @@ app.post('/api/pets/ingest', async (req, res) => {
 // Pet sync endpoint (can be triggered by cron jobs)
 app.post('/api/pets/sync', async (req, res) => {
   try {
-    const result = await syncService.sync();
+    const result = await getSyncService().sync();
     res.json({
       success: result.success,
       petsSynced: result.petsSynced,
@@ -182,7 +196,7 @@ app.post('/api/pets/sync', async (req, res) => {
 // Get ingestion progress
 app.get('/api/pets/progress', async (req, res) => {
   try {
-    const progress = await ingestionService.getProgress();
+    const progress = await getIngestionService().getProgress();
     res.json(progress);
   } catch (error: any) {
     console.error('Error getting progress:', error);
