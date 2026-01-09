@@ -162,7 +162,7 @@ export class PetfinderDistributorClient {
    */
   async healthCheck(): Promise<HealthCheckResponse> {
     const response = await this.makeRequest('/');
-    return response.json();
+    return (await response.json()) as HealthCheckResponse;
   }
 
   /**

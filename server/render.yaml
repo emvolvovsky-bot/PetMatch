@@ -1,0 +1,32 @@
+# Render Blueprint for PetMatch Server
+# This file defines all services needed for PetMatch
+# 
+# To use this blueprint:
+# 1. Push this file to your GitHub repo
+# 2. In Render Dashboard, click "New +" → "Blueprint"
+# 3. Connect your repo and Render will create the services
+#
+# Alternatively, create services manually using the steps in RENDER_DEPLOYMENT.md
+
+services:
+  # Web Service for Express API (News endpoint + Pet ingestion endpoints)
+  - type: web
+    name: petmatch-api
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NEWS_API_KEY
+        sync: false  # Set this in Render dashboard as a secret
+    healthCheckPath: /health
+
+# Note: For pet ingestion, use Render Cron Jobs (not included in blueprint):
+# - Name: petmatch-ingest
+# - Command: curl -X POST https://petmatch-api.onrender.com/api/pets/ingest
+# - Schedule: 0 */6 * * * (every 6 hours)
+#
+# Or use a Background Worker:
+# - Type: worker
+# - Start Command: npm run backup:scheduler
+

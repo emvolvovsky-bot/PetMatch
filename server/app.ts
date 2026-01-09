@@ -4,6 +4,8 @@
 
 import express from 'express';
 import cors from 'cors';
+import { PetIngestionService } from './petIngestionService';
+import { PetSyncService } from './petSyncService';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,6 +16,27 @@ app.use(express.json());
 
 // Get NEWS_API_KEY from environment
 const NEWS_API_KEY = process.env.NEWS_API_KEY;
+
+// Initialize services
+const ingestionService = new PetIngestionService();
+const syncService = new PetSyncService();
+
+// NewsAPI response types
+interface NewsAPIArticle {
+  title: string | null;
+  description: string | null;
+  url: string | null;
+  publishedAt: string | null;
+  source?: {
+    name?: string | null;
+  } | null;
+  urlToImage?: string | null;
+}
+
+interface NewsAPIResponse {
+  status: string;
+  articles?: NewsAPIArticle[];
+}
 
 app.get('/api/pet-news', async (req, res) => {
   try {
@@ -27,7 +50,7 @@ app.get('/api/pet-news', async (req, res) => {
     try {
       const headlinesUrl = `https://newsapi.org/v2/top-headlines?country=us&pageSize=20&apiKey=${NEWS_API_KEY}`;
       const headlinesResponse = await fetch(headlinesUrl);
-      const headlinesData = await headlinesResponse.json();
+      const headlinesData = (await headlinesResponse.json()) as NewsAPIResponse;
 
       if (headlinesData.status === 'ok' && headlinesData.articles) {
         allArticles = allArticles.concat(headlinesData.articles);
@@ -53,7 +76,7 @@ app.get('/api/pet-news', async (req, res) => {
       try {
         const url = `https://newsapi.org/v2/everything?q=${query}&language=en&sortBy=publishedAt&pageSize=15&apiKey=${NEWS_API_KEY}`;
         const response = await fetch(url);
-        const data = await response.json();
+        const data = (await response.json()) as NewsAPIResponse;
 
         if (data.status === 'ok' && data.articles) {
           allArticles = allArticles.concat(data.articles);
@@ -120,9 +143,59 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
+// Pet ingestion endpoint (can be triggered by cron jobs)
+app.post('/api/pets/ingest', async (req, res) => {
+  try {
+    const result = await ingestionService.ingestPets();
+    res.json({
+      success: true,
+      ...result
+    });
+  } catch (error: any) {
+    console.error('Error ingesting pets:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Pet sync endpoint (can be triggered by cron jobs)
+app.post('/api/pets/sync', async (req, res) => {
+  try {
+    const result = await syncService.sync();
+    res.json({
+      success: result.success,
+      petsSynced: result.petsSynced,
+      cycleCompleted: result.cycleCompleted,
+      error: result.error
+    });
+  } catch (error: any) {
+    console.error('Error syncing pets:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Get ingestion progress
+app.get('/api/pets/progress', async (req, res) => {
+  try {
+    const progress = await ingestionService.getProgress();
+    res.json(progress);
+  } catch (error: any) {
+    console.error('Error getting progress:', error);
+    res.status(500).json({
+      error: error.message
+    });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`PetMatch API server running on port ${PORT}`);
   console.log(`Pet news endpoint: http://localhost:${PORT}/api/pet-news`);
+  console.log(`Pet ingestion endpoint: http://localhost:${PORT}/api/pets/ingest`);
 });
 
 export default app;

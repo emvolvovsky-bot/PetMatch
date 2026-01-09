@@ -12,12 +12,40 @@ actor NewsService {
     private let session: URLSession
     private let decoder: JSONDecoder
     
-    init(baseURL: String = "http://localhost:3000", session: URLSession = .shared) {
-        self.baseURL = baseURL
+    init(baseURL: String? = nil, session: URLSession = .shared) {
+        // Try to get base URL from parameter, environment variable, or Info.plist
+        if let url = baseURL {
+            self.baseURL = url
+        } else if let url = Self.getBaseURLFromConfiguration() {
+            self.baseURL = url
+        } else {
+            // Default: localhost for development
+            // TODO: Replace with your Render URL after deployment
+            // Example: "https://petmatch-api.onrender.com"
+            self.baseURL = "http://localhost:3000"
+        }
         self.session = session
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         self.decoder = decoder
+    }
+    
+    /// Get base URL from environment variables or Info.plist
+    private static func getBaseURLFromConfiguration() -> String? {
+        let env = ProcessInfo.processInfo.environment
+        let info = Bundle.main.infoDictionary ?? [:]
+        
+        // Try environment variable first
+        if let url = env["PETMATCH_API_URL"] as String? {
+            return url
+        }
+        
+        // Try Info.plist
+        if let url = info["PETMATCH_API_URL"] as? String {
+            return url
+        }
+        
+        return nil
     }
     
     func fetchPetNews() async throws -> [NewsArticle] {
