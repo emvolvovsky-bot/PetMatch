@@ -60,35 +60,29 @@ app.get('/api/pet-news', async (req, res) => {
 
     let allArticles: any[] = [];
 
-    // 1) Try headlines first
-    try {
-      const headlinesUrl = `https://newsapi.org/v2/top-headlines?country=us&pageSize=20&apiKey=${NEWS_API_KEY}`;
-      const headlinesResponse = await fetch(headlinesUrl);
-      const headlinesData = (await headlinesResponse.json()) as NewsAPIResponse;
-
-      if (headlinesData.status === 'ok' && headlinesData.articles) {
-        allArticles = allArticles.concat(headlinesData.articles);
-      }
-    } catch (err) {
-      console.error('Error fetching headlines:', err);
-    }
-
-    // 2) Pet-focused searches (use first 2 to avoid rate limits)
+    // Pet-focused searches only - no general headlines
     const searchQueries = [
       encodeURIComponent(
-        '(dog OR dogs OR cat OR cats OR pet OR pets OR animal OR animals) AND (adoption OR adopt OR shelter OR rescue OR fostering OR foster)'
+        '(dog OR dogs OR cat OR cats OR pet OR pets OR puppy OR puppies OR kitten OR kittens) AND (adoption OR adopt OR shelter OR rescue OR fostering OR foster OR "animal rescue" OR "humane society")'
       ),
       encodeURIComponent(
-        '(veterinary OR vet OR "pet health" OR "animal welfare" OR "service animal" OR "pet food" OR recall OR "animal control")'
+        '(veterinary OR vet OR "pet health" OR "animal welfare" OR "service animal" OR "pet food" OR "pet care" OR "animal care")'
       ),
       encodeURIComponent(
-        '("humane society" OR "animal shelter" OR "animal rescue" OR SPCA OR "Best Friends Animal Society")'
+        '("humane society" OR "animal shelter" OR "animal rescue" OR SPCA OR "Best Friends Animal Society" OR "pet adoption" OR "dog adoption" OR "cat adoption")'
+      ),
+      encodeURIComponent(
+        '(puppy OR puppies OR kitten OR kittens OR "pet training" OR "dog training" OR "cat behavior" OR "pet behavior")'
+      ),
+      encodeURIComponent(
+        '("pet food recall" OR "dog food" OR "cat food" OR "pet nutrition" OR "animal nutrition")'
       )
     ];
 
-    for (const query of searchQueries.slice(0, 2)) {
+    // Fetch from all pet-specific queries
+    for (const query of searchQueries) {
       try {
-        const url = `https://newsapi.org/v2/everything?q=${query}&language=en&sortBy=publishedAt&pageSize=15&apiKey=${NEWS_API_KEY}`;
+        const url = `https://newsapi.org/v2/everything?q=${query}&language=en&sortBy=publishedAt&pageSize=20&apiKey=${NEWS_API_KEY}`;
         const response = await fetch(url);
         const data = (await response.json()) as NewsAPIResponse;
 
@@ -100,19 +94,24 @@ app.get('/api/pet-news', async (req, res) => {
       }
     }
 
-    // 3) Filter for pet relevance and remove junk
-    const relevanceKeywords = [
-      'dog', 'dogs', 'cat', 'cats', 'pet', 'pets', 'animal', 'animals',
-      'adopt', 'adoption', 'shelter', 'rescue', 'foster', 'fostering',
-      'veterinary', 'vet', 'spca', 'humane', 'animal welfare',
-      'service animal', 'emotional support', 'pet health', 'rabies',
-      'leash', 'microchip', 'microchipping', 'neuter', 'spay',
-      'pet food', 'recall', 'kennel', 'puppy', 'kitten'
+    // Strict filtering for pet relevance
+    const requiredKeywords = [
+      'dog', 'dogs', 'cat', 'cats', 'pet', 'pets', 'puppy', 'puppies', 'kitten', 'kittens',
+      'animal', 'animals', 'canine', 'feline', 'adopt', 'adoption', 'shelter', 'rescue',
+      'foster', 'fostering', 'veterinary', 'vet', 'spca', 'humane', 'animal welfare',
+      'service animal', 'emotional support animal', 'pet health', 'animal health',
+      'leash', 'microchip', 'microchipping', 'neuter', 'spay', 'spaying', 'neutering',
+      'pet food', 'dog food', 'cat food', 'pet care', 'animal care', 'pet training',
+      'dog training', 'cat behavior', 'pet behavior', 'kennel', 'animal shelter',
+      'animal rescue', 'pet adoption', 'dog adoption', 'cat adoption'
     ];
 
     const excludeTerms = [
       'nfl', 'nba', 'mlb', 'soccer', 'football game', 'basketball game',
-      'movie', 'tv show', 'celebrity', 'album', 'fashion week'
+      'movie', 'tv show', 'celebrity', 'album', 'fashion week', 'science',
+      'avalanche', 'earthquake', 'hurricane', 'tornado', 'weather', 'climate',
+      'politics', 'election', 'president', 'congress', 'senate', 'stock market',
+      'crypto', 'bitcoin', 'technology', 'iphone', 'android', 'gaming'
     ];
 
     const relevantArticles = allArticles
@@ -123,18 +122,36 @@ app.get('/api/pet-news', async (req, res) => {
         const descLower = (article.description || '').toLowerCase();
         const combined = `${titleLower} ${descLower}`;
 
-        const hasPetKeyword = relevanceKeywords.some(k => combined.includes(k));
+        // Must have at least one pet-related keyword
+        const hasPetKeyword = requiredKeywords.some(k => combined.includes(k));
         if (!hasPetKeyword) return false;
 
-        const isExcluded = excludeTerms.some(term => titleLower.includes(term));
-        return !isExcluded;
+        // Must not contain excluded terms
+        const isExcluded = excludeTerms.some(term => combined.includes(term));
+        if (isExcluded) return false;
+
+        // Additional check: title should strongly suggest pet content
+        const titleHasPetKeyword = requiredKeywords.some(k => titleLower.includes(k));
+        if (!titleHasPetKeyword) {
+          // If title doesn't have pet keyword, description must be very clear
+          const descHasStrongPetKeyword = ['dog', 'cat', 'pet', 'puppy', 'kitten', 'adoption', 'shelter', 'rescue', 'vet', 'veterinary'].some(k => descLower.includes(k));
+          if (!descHasStrongPetKeyword) return false;
+        }
+
+        return true;
       })
       // Remove duplicates by URL
       .filter((article, index, self) =>
         index === self.findIndex(a => a.url === article.url)
       )
-      // Limit
-      .slice(0, 5)
+      // Sort by published date (newest first)
+      .sort((a, b) => {
+        const dateA = new Date(a.publishedAt || 0).getTime();
+        const dateB = new Date(b.publishedAt || 0).getTime();
+        return dateB - dateA;
+      })
+      // Limit to top 15 most relevant
+      .slice(0, 15)
       // Normalize
       .map(article => ({
         title: article.title,

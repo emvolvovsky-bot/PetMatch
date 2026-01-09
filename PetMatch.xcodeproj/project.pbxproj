@@ -38,6 +38,7 @@
 		88B000000000000000000023 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000023 /* NewsView.swift */; };
 		88B000000000000000000024 /* NewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000024 /* NewsArticle.swift */; };
 		88B000000000000000000025 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000025 /* NewsService.swift */; };
+		88B000000000000000000026 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A000000000000000000026 /* CustomTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		88A000000000000000000023 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/NewsView.swift; sourceTree = "<group>"; };
 		88A000000000000000000024 /* NewsArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/NewsArticle.swift; sourceTree = "<group>"; };
 		88A000000000000000000025 /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/NewsService.swift; sourceTree = "<group>"; };
+		88A000000000000000000026 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -101,6 +103,7 @@
 				88A000000000000000000010 /* PetMatchApp.swift */,
 				88A00000000000000000001F /* OnboardingView.swift */,
 				88A000000000000000000006 /* ContentView.swift */,
+				88A000000000000000000026 /* CustomTabBar.swift */,
 				88A000000000000000000009 /* DiscoverView.swift */,
 				88A00000000000000000000B /* LikedView.swift */,
 				88A00000000000000000000F /* PetDetailView.swift */,
@@ -329,6 +332,7 @@
 			files = (
 				88B000000000000000000010 /* PetMatchApp.swift in Sources */,
 				88B000000000000000000006 /* ContentView.swift in Sources */,
+				88B000000000000000000026 /* CustomTabBar.swift in Sources */,
 				88B000000000000000000009 /* DiscoverView.swift in Sources */,
 				88B00000000000000000000B /* LikedView.swift in Sources */,
 				88B00000000000000000000F /* PetDetailView.swift in Sources */,

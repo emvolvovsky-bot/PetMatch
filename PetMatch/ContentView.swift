@@ -12,57 +12,27 @@ struct ContentView: View {
     @StateObject private var viewModel = PetDeckViewModel()
     @State private var showLaunchOverlay = true
     @State private var launchStart = Date()
+    @State private var selectedTab: AppTab = .discover
 
     var body: some View {
         ZStack {
             DopamineGradientBackground()
                 .ignoresSafeArea()
 
-            TabView {
-                DiscoverView(viewModel: viewModel)
-                    .tabItem {
-                        Image(systemName: "pawprint.fill")
-                        Text("Discover")
-                    }
-                PetMapView(viewModel: viewModel)
-                    .tabItem {
-                        Image(systemName: "map.fill")
-                        Text("Map")
-                    }
-                NewsView()
-                    .tabItem {
-                        Image(systemName: "newspaper.fill")
-                        Text("News")
-                    }
-                LikedView(viewModel: viewModel)
-                    .tabItem {
-                        Image(systemName: "heart.fill")
-                        Text("Liked")
-                    }
-            }
-            .background(Color.clear)
-            .onAppear {
-                // Customize tab bar appearance to make unselected tabs darker/more visible
-                let appearance = UITabBarAppearance()
-                appearance.configureWithOpaqueBackground()
-                
-                // Selected tab color (coral)
-                appearance.stackedLayoutAppearance.selected.iconColor = UIColor(PMColor.coral)
-                appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
-                    .foregroundColor: UIColor(PMColor.coral)
-                ]
-                
-                // Unselected tab color - make it darker for better visibility
-                appearance.stackedLayoutAppearance.normal.iconColor = UIColor(PMColor.textSecondary)
-                appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
-                    .foregroundColor: UIColor(PMColor.textSecondary)
-                ]
-                
-                // Apply to all tab bars
-                UITabBar.appearance().standardAppearance = appearance
-                if #available(iOS 15.0, *) {
-                    UITabBar.appearance().scrollEdgeAppearance = appearance
+            Group {
+                switch selectedTab {
+                case .discover:
+                    DiscoverView(viewModel: viewModel)
+                case .map:
+                    PetMapView(viewModel: viewModel)
+                case .news:
+                    NewsView()
+                case .likes:
+                    LikedView(viewModel: viewModel)
                 }
+            }
+            .safeAreaInset(edge: .bottom) {
+                CustomTabBar(selected: $selectedTab)
             }
 
             if showLaunchOverlay {
